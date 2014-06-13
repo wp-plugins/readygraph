@@ -52,8 +52,8 @@ update_option('readygraph_enable_notification','true');
 	    <div class="wrap1" style="min-height: 600px;">
 
       <div id="icon-plugins" class="icon32"></div>
-      <h2>Grow your userbase with Readygraph </h2>
-      <h3>Activate Readygraph features to maximize your website signups</h3>
+      <h2>We've enhanced this plugin with ReadyGraph's User Growth Engine</h2>
+      <h3>Add ReadyGraph features to maximize your signups</h3>
       <p style="display:none;color:red;" id="error"></p>
       <div class="register-left">
 	  <p style="float:right;padding: 5%;"><a onclick="showLogin()" href="javascript:void(0)" style="text-decoration:none;border-bottom:1px dotted blue;">
@@ -163,7 +163,7 @@ Questions, feel free to email us at nick@readygraph.com</p>
 		</div>
 		<div style="clear: both;"></div>
 	</div>
-	<div><?php if(isset($_GET["readygraph_access_token"]) && isset($_GET["app_id"]) && isset($_GET["email"])) { echo '<h3 class="alert" style="margin-right: 1%;">Congratulations, ReadyGraph is now activated. Configure your ReadyGraph Settings below. (Optional)</h3>'; } else { echo '<h3 class="alert" style="margin-right: 1%;">Configure your ReadyGraph Settings. (Optional)</h3>';}?>
+	<div><?php if(isset($_GET["readygraph_access_token"]) && isset($_GET["app_id"]) && isset($_GET["email"])) { echo '<div class="alert" style="margin-right: 1%;"><h4>ReadyGraph growth engine is now activated.  <a href="/wp-admin/widgets.php"><u>Place your form widget</u></a> to maximize signups.</h4>Optional: Customize key growth features included with this plugin including: intelligent signup popup, user referral flow, automated re-engagement emails, analytics, and more!</div>'; } else { echo '<div class="alert" style="margin-right: 1%;"><h4>ReadyGraph growth engine is active.  <a href="/wp-admin/widgets.php"><u>Place your widget</u></a> to maximize signups.</h4>Optional: Customize key growth features included with this plugin including: intelligent signup popup, user referral flow, automated re-engagement emails, analytics, and more!</div>';}?>
 			<table cellspacing="0" cellpadding="0" border="0" style="width: 90%; margin: 0 auto;">
 					<tr>
 							<td class="rg-vertical-tab-body-container" style="width: 600px; text-align: center;">
