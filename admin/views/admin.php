@@ -33,7 +33,7 @@ update_option('readygraph_auto_select_all','true');
 update_option('readygraph_enable_notification','true');
 }
 	if(isset($_GET["readygraph_access_token"]) && isset($_GET["app_id"]) && isset($_GET["email"])) setupReadyGraph();
-	if(base64_decode($_GET["action"]) == "changeaccount")changeAccount();
+	if(isset($_GET["action"]) && base64_decode($_GET["action"]) == "changeaccount")changeAccount();
 	
 	if (isset($_POST["readygraph_access_token"])) update_option('readygraph_access_token', $_POST["readygraph_access_token"]);
 	if (isset($_POST["readygraph_refresh_token"])) update_option('readygraph_refresh_token', $_POST["readygraph_refresh_token"]);
@@ -150,7 +150,7 @@ Questions, feel free to email us at nick@readygraph.com</p>
 				<span class="email-address" style="text-shadow: none;"></span> <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
-				<li><a onclick="changeAccount()" href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&action=<?php echo base64_encode("changeaccount");?>" >Change Account</a></li>
+				<li><a href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&action=<?php echo base64_encode("changeaccount");?>" >Change Account</a></li>
 			</ul>
 		</div>
 		<div class="btn-group pull-right" style="margin: 8px 10px 0 0;">
