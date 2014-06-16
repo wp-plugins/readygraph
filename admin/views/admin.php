@@ -45,9 +45,46 @@ update_option('readygraph_enable_notification','true');
 	if (isset($_POST["readygraph_enable_notification"])) update_option('readygraph_enable_notification', $_POST["notification"]);
 	if (isset($_POST["readygraph_auto_select_all"])) update_option('readygraph_auto_select_all', $_POST["selectAll"]);
 ?>
+<script type="text/javascript" charset="utf-8">
+var app_id = $('[name="readygraph_application_id"]').val();
+if (app_id) {
+		
+        window.setup_readygraph(app_id);
+}
+
+
+$(function () {
+
+		var access_token = $('[name="readygraph_access_token"]').val();
+		if (access_token) {
+		$('.delay').val($('[name="readygraph_delay"]').val());
+
+		$('.sidebar').val($('[name="readygraph_enable_sidebar"]').val());
+		$('.notification').val($('[name="readygraph_enable_notification"]').val());
+  		$('.selectAll').val($('[name="readygraph_auto_select_all"]').val());
+
+		$('.email-address').text($('[name="readygraph_email"]').val());
+		$.ajax({
+			url: "https://readygraph.com/api/v1/insight_info", 
+			beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "bearer " + access_token); //96a7a26ae8eb95c4db2115c49aa9cdd0c8b73d34
+			xhr.setRequestHeader("Accept", "application/json");
+			}, 
+			type: 'POST',
+			success: function (response) {
+				$('.result').text(access_token);
+				if (response.success) {
+					$('.result').text(response.data.subscribers + ((response.data.subscribers == 0) ? ' Subscriber' : ' Subscribers'));
+				} else {
+					$('.result').text('Insight');
+				}
+			}
+			});
+}
+else { $('.result').text('Insight-Readygraph-No-Token'); }});
+</script>
 
 <?php if (!get_option('readygraph_access_token') || strlen(get_option('readygraph_access_token')) <= 0) {?>
-
 <div class="authenticate" style="">
 	    <div class="wrap1" style="min-height: 600px;">
 
@@ -163,7 +200,7 @@ Questions, feel free to email us at nick@readygraph.com</p>
 		</div>
 		<div style="clear: both;"></div>
 	</div>
-	<div><?php if(isset($_GET["readygraph_access_token"]) && isset($_GET["app_id"]) && isset($_GET["email"])) { echo '<div class="alert" style="margin-right: 1%;"><h4>ReadyGraph growth engine is now activated.  <a href="/wp-admin/widgets.php"><u>Place your form widget</u></a> to maximize signups.</h4>Optional: Customize key growth features included with this plugin including: intelligent signup popup, user referral flow, automated re-engagement emails, analytics, and more!</div>'; } else { echo '<div class="alert" style="margin-right: 1%;"><h4>ReadyGraph growth engine is active.  <a href="/wp-admin/widgets.php"><u>Place your widget</u></a> to maximize signups.</h4>Optional: Customize key growth features included with this plugin including: intelligent signup popup, user referral flow, automated re-engagement emails, analytics, and more!</div>';}?>
+	<div><?php if(isset($_GET["readygraph_access_token"]) && isset($_GET["app_id"]) && isset($_GET["email"])) { echo '<div class="alert" style="margin-right: 1%;"><h4>ReadyGraph growth engine is now activated.  <a href="'. admin_url("wp-admin/widgets.php"). '"<u>Place your form widget</u></a> to maximize signups.</h4>Optional: Customize key growth features included with this plugin including: intelligent signup popup, user referral flow, automated re-engagement emails, analytics, and more!</div>'; } else { echo '<div class="alert" style="margin-right: 1%;"><h4>ReadyGraph growth engine is active.  <a href="/wp-admin/widgets.php"><u>Place your widget</u></a> to maximize signups.</h4>Optional: Customize key growth features included with this plugin including: intelligent signup popup, user referral flow, automated re-engagement emails, analytics, and more!</div>';}?>
 			<table cellspacing="0" cellpadding="0" border="0" style="width: 90%; margin: 0 auto;">
 					<tr>
 							<td class="rg-vertical-tab-body-container" style="width: 600px; text-align: center;">
@@ -209,16 +246,16 @@ Questions, feel free to email us at nick@readygraph.com</p>
 									<p>Enable Sidebar: 
 									<select class="sidebar" name="sidebar" class="form-control">
 										<option value="true">YES</option>
-										<option value="false" selected>NO</option>
+										<option value="false">NO</option>
 									</select><a href="#" class="help-tooltip"><img src="../wp-content/plugins/readygraph/admin/assets/Help-icon.png" width="15px" style="margin-left:10px;"/><span><img class="callout" src="../wp-content/plugins/readygraph/admin/assets/callout_black.gif" /><strong>ReadyGraph Social Feed Settings</strong><br />You can add an optional social sidebar to your site that allows users the ability to share and discuss the best content on your site.  For an example, click here.<br /></span></a></p><br />
 									<p>Enable Lower Right Notification: 
 									<select class="notification" name="notification" class="form-control">
-										<option value="true" selected>YES</option>
+										<option value="true">YES</option>
 										<option value="false">NO</option>
 									</select></p><br />
 									<p>Pre-checked Invite Contact: 
 									<select class="selectAll" name="selectAll" class="form-control">
-										<option value="true" selected>YES</option>
+										<option value="true">YES</option>
 										<option value="false">NO</option>
 									</select></p><br />
 									
