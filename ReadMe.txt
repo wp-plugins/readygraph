@@ -4,7 +4,7 @@ Donate link: http://www.readygraph.com
 Tags: posts, subscription, email, subscribe, notify, notification, form, email, social, Facebook, register, contact, newsletter
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPL3
 If you install it, they will come!
 == Description ==
@@ -46,5 +46,6 @@ If you choose to do so, you can disable the pop-up signup form or choose a Botto
 == Screenshots ==
 = =
 == Changelog ==
+= 1.1.1 =* Get larger blog post for daily digest* Code cleanup
 = 1.1.0 =* GUI Change* Bug Fixes* Customization Options* ReadyGraph Premium
 == Upgrade Notice ==See Update Version History
